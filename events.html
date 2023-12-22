@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Find students - Learner 24/7</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	
+	<script>
+	  //Print Table data after refreshing the table 
+			function buildTable(details) {
+				$(".table td").remove();
+				var table = document.getElementById('infotable')
+				for (var i = 0; i < details.length; i++) {
+					var row = 		`<tr>
+											<td>${details[i].SID}</td>
+											<td>${details[i].FirstName}</td>
+											<td>${details[i].LastName}</td>
+											<td>${details[i].Email}</td>
+											<td>${details[i].NearCity}</td>
+											<td>${details[i].Course}</td>
+											<td>${details[i].Guardian}</td>
+											<td>${details[i].Subjects}</td>
+									</tr>`
+					table.innerHTML += row
+				}
+			}
+		
+	
+		
+		
+		
+		//Show all student details
+        $(document).ready(function () {
+            $("#showallbtn").click(function () {
+                $.ajax({
+                    url: 'http://localhost:3000/student/',
+                    type: 'get',
+                    contentType: 'application/json',
+                    dataType: "json",
+                    success: function (data, textStatus, jQxhr) {
+    
+                        buildTable(data);
+    
+    
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            });
+        });
+	
+		
+		
+		
+		//filter using first name
+		$(document).ready(function () {
+            $("#fnamebtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/FirstName=' + $('#fname').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		
+		
+		
+		
+		//filter using SID
+		$(document).ready(function () {
+            $("#sidbtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/SID=' + $('#sid').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		
+		
+		
+		//filter using last name
+		$(document).ready(function () {
+            $("#lnamebtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/LastName=' + $('#lname').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		
+		
+		//filter using email
+		$(document).ready(function () {
+            $("#emailbtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/Email=' + $('#email').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		
+		
+		//filter using Nearest City
+		$(document).ready(function () {
+            $("#citybtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/NearCity=' + $('#city').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		
+		
+		//filter using course
+		$(document).ready(function () {
+            $("#coursebtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/Course/' + $('#course').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		
+		
+		//filter using guardian's name
+		$(document).ready(function () {
+            $("#guardianbtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/Guardian=' + $('#guardian').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		
+		
+		//filter using subject name
+		$(document).ready(function () {
+            $("#subjectbtn").click(function (){
+                    $.ajax({
+                        url: 'http://localhost:3000/student/Subjects/' + $('#subject').val(),
+                        type: 'get',
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            buildTable(data);
+                           
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+				});
+			});
+		
+		//Insert Student Function
+		$(document).ready(function () {
+		$("#insertbtn").click(function () {
+          $.ajax({
+            url: "http://localhost:3000/student/",
+            type: "post",
+            
+             data:  JSON.stringify({
+              SID: $('#sid').val(),
+              FirstName: $("#fname").val(),
+              LastName: $("#lname").val(),
+              Email: $("#email").val(),
+              NearCity: $("#city").val(),
+              Course: $("#course").val(),
+              Guardian: $("#guardian").val(),
+              Subjects: $("#subject").val(),
+            }),
+            success: function (data, textStatus, jQxhr) {
+              alert("Student created successfully");
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+              console.log(errorThrown);
+            },
+          });
+
+        });
+	});
+		
+	
+	//Update student by SID
+	
+	$(document).ready(function() {
+  $("#updatesidbtn").click(function() {
+    $.ajax({
+      url: "http://localhost:3000/student/" + $('#sid').val(),
+      type: "PUT",
+      contentType: "application/json",
+      data: JSON.stringify({
+        sid: $('#sid').val(),
+        fname: $("#fname").val(),
+        lname: $("#lname").val(),
+        email: $("#email").val(),
+        city: $("#city").val(),
+        course: $("#course").val(),
+        guardian: $("#guardian").val(),
+        subject: $("#subject").val()
+      }),
+      success: function(response) {
+        console.log("Student updated successfully");
+      },
+      error: function(xhr, status, error) {
+        console.error("Error updating student:", error);
+      }
+    });
+  });
+});
+
+		
+
+	//Deleting student details by the SID
+	
+	$(document).ready(function () {
+    $("#deletebtn").click(function () {
+        var studentId = $("#sid").val();
+        
+        $.ajax({
+            url: "http://localhost:3000/student/" + studentId,
+            type: "DELETE",
+            success: function (data, textStatus, jQxhr) {
+                alert("Student deleted successfully");
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+                alert("Error deleting student");
+            }
+        });
+    });
+});
+
+
+		
+			
+	</script>
+	
+	
+	
+	
+	
+	
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Learner 24/7</a></h1>
+      
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html">Resources</a></li>
+          <li><a class="active" href="events.html">Student</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
+      <a href="courses.html" class="get-started-btn">Get Started</a>
+
+    </div>
+  </header><br>
+  <br>
+<br>
+
+
+
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your SID</h4>
+            <form>
+              <input type="text" name="sid" id="sid"><input type="button" value="Find by SID" id="sidbtn">
+            </form>
+          </div>
+			
+		  <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your First name</h4>
+            <form>
+              <input type="text" name="fname" id="fname"><input type="button" value="Find by First Name" id="fnamebtn">
+            </form>
+          </div>
+
+		  <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your Last name</h4>
+            <form>
+              <input type="text" name="lname" id="lname"><input type="button" value="Find by Last Name" id="lnamebtn">
+            </form>
+          </div>
+			
+		  <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your Email</h4>
+            <form>
+              <input type="text" name="email" id="email"><input type="button" value="Find by email" id="emailbtn">
+             </form>
+          </div>
+			
+		  <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your Nearest city</h4>
+           <form>
+              <input type="text" name="city" id="city"><input type="button" value="Find by Nearest city" id="citybtn">
+             </form>
+          </div>
+			
+		  <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your course</h4>
+            <form>
+              <input type="text" name="course" id="course"><input type="button" value="Find by course name" id="coursebtn">
+             </form>
+          </div>
+			
+		  <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your Subject</h4>
+            <form>
+              <input type="text" name="subject" id="subject"><input type="button" value="Find by Subject name" id="subjectbtn">
+             </form>
+		  </div>
+			
+		  <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 align="center">Type your guardian</h4>
+            <form>
+              <input type="text" name="guardian" id="guardian"><input type="button" value="Find by guardian's Name" id="guardianbtn">
+            </form>
+            <p>&nbsp;</p>
+		  </div>
+
+
+		  <div class="checks" align="center">	
+		  	<input type="button" class="butto" value="Show all Student details" id="showallbtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  	<input type="button" class="butto" value="Insert Student details" id="insertbtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  	<input type="button" class="butto" value="Update Student by SID" id="updatesidbtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  	<input type="button" class="butto" value="Update Student by First name" id="updatefnamebtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  	<input type="button" class="butto" value="Delete Student by SID" id="deletebtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  </div>
+        </div>
+      </div>
+    </div>
+	<div class="col-12 mt-5">
+	  		<table class="table table-striped">
+				<th>
+					<tr>
+						<th>SID</th>
+						<th>First name</th>
+						<th>Last name</th>
+						<th>Email</th>
+						<th>Nearest city</th>
+						<th>Course</th>
+						<th>Guardian</th>
+						<th>Subjects</th>
+					</tr>
+				</th>
+			  <tbody class="student-list" id="infotable">
+				  
+			  </tbody>
+	  		</table>
+	  	</div>
+
+    
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Learner 24/7</h3>
+            <p>
+              Leaner 24/7 Head Office <br>
+              Old Kottawa Road<br>
+              Embuldheniya <br><br>
+              <strong>Phone:</strong> 0773458769<br>
+              <strong>Email:</strong> learner247@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about.html">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about.html">Terms of service</a></li>
+            </ul>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Ask a question </h4>
+            <p>Expertise are online to aid you with your requests</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Submit Question">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Leaner 24/7</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+
+          Designed by <a href="#">Theni</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+	<script src="script.js">
+		
+	</script>	
+</body>
+
+</html>
